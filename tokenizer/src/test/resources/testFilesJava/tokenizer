@@ -1,0 +1,55 @@
+package tokenizer;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+
+/*
+ * Multi-line comment
+ */
+public abstract class AbstractTokenizer {
+
+// Single line comment
+
+    /**
+     * Tokenize
+     */
+
+// Single line comment (1/2)
+// Single line comment (2/2)
+
+    /**
+     * Method to tokenize a reader
+     *
+     * @param reader to use
+     * @return an array of token on which all preprocessor registered have been applied
+     * @throws IOException in case of reader exception
+     */
+    public abstract String[] tokenize(Reader reader) throws IOException;
+
+    /**
+     * Method to tokenize a string
+     *
+     * @param s string to tokenize
+     * @return an array of token on which all preprocessor registered have been applied
+     */
+    public String[] tokenize(String s) {
+        try {
+            Reader r = new StringReader(s,p);
+            String[] result = tokenize(r,q);
+            r.close();
+            return result * /* inline comment */ 3;
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * Type of the Tokenizer
+     *
+     * @return
+     */
+    public abstract String getType();
+}

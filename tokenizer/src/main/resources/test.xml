@@ -1,0 +1,186 @@
+<root type='CompilationUnit'>
+    <imports>
+        <import type='ImportDeclaration' isAsterisk='false' isStatic='false'>
+            <name type='Name' identifier='IOException'>
+                <qualifier type='Name' identifier='io'>
+                    <qualifier type='Name' identifier='java'></qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import type='ImportDeclaration' isAsterisk='false' isStatic='false'>
+            <name type='Name' identifier='Reader'>
+                <qualifier type='Name' identifier='io'>
+                    <qualifier type='Name' identifier='java'></qualifier>
+                </qualifier>
+            </name>
+        </import>
+        <import type='ImportDeclaration' isAsterisk='false' isStatic='false'>
+            <name type='Name' identifier='StringReader'>
+                <qualifier type='Name' identifier='io'>
+                    <qualifier type='Name' identifier='java'></qualifier>
+                </qualifier>
+            </name>
+        </import>
+    </imports>
+    <types>
+        <type type='ClassOrInterfaceDeclaration' isInterface='false'>
+            <name type='SimpleName' identifier='AbstractTokenizer'></name>
+            <members>
+                <member type='MethodDeclaration'>
+                    <type type='ArrayType'>
+                        <componentType type='ClassOrInterfaceType'>
+                            <name type='SimpleName' identifier='String'></name>
+                        </componentType>
+                    </type>
+                    <name type='SimpleName' identifier='tokenize'></name>
+                    <comment type='JavadocComment' content='
+     * Method to tokenize a mutant
+     *
+     * @param mutant to use
+     * @return an array of token on which all preprocessor registered have been applied
+     * @throws IOException in case of mutant exception
+     '></comment>
+                    <parameters>
+                        <parameter type='Parameter' isVarArgs='false'>
+                            <name type='SimpleName' identifier='mutant'></name>
+                            <type type='ClassOrInterfaceType'>
+                                <name type='SimpleName' identifier='Reader'></name>
+                            </type>
+                        </parameter>
+                    </parameters>
+                    <thrownExceptions>
+                        <thrownException type='ClassOrInterfaceType'>
+                            <name type='SimpleName' identifier='IOException'></name>
+                        </thrownException>
+                    </thrownExceptions>
+                </member>
+                <member type='MethodDeclaration'>
+                    <body type='BlockStmt'>
+                        <statements>
+                            <statement type='TryStmt'>
+                                <tryBlock type='BlockStmt'>
+                                    <statements>
+                                        <statement type='ExpressionStmt'>
+                                            <expression type='VariableDeclarationExpr'>
+                                                <variables>
+                                                    <variable type='VariableDeclarator'>
+                                                        <initializer type='ObjectCreationExpr'>
+                                                            <type type='ClassOrInterfaceType'>
+                                                                <name type='SimpleName'
+                                                                      identifier='StringReader'></name>
+                                                            </type>
+                                                            <arguments>
+                                                                <argument type='NameExpr'>
+                                                                    <name type='SimpleName' identifier='s'></name>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name type='SimpleName' identifier='r'></name>
+                                                        <type type='ClassOrInterfaceType'>
+                                                            <name type='SimpleName' identifier='Reader'></name>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type='ExpressionStmt'>
+                                            <expression type='VariableDeclarationExpr'>
+                                                <variables>
+                                                    <variable type='VariableDeclarator'>
+                                                        <initializer type='MethodCallExpr'>
+                                                            <name type='SimpleName' identifier='tokenize'></name>
+                                                            <arguments>
+                                                                <argument type='NameExpr'>
+                                                                    <name type='SimpleName' identifier='r'></name>
+                                                                </argument>
+                                                            </arguments>
+                                                        </initializer>
+                                                        <name type='SimpleName' identifier='result'></name>
+                                                        <type type='ArrayType'>
+                                                            <componentType type='ClassOrInterfaceType'>
+                                                                <name type='SimpleName' identifier='String'></name>
+                                                            </componentType>
+                                                        </type>
+                                                    </variable>
+                                                </variables>
+                                            </expression>
+                                        </statement>
+                                        <statement type='ExpressionStmt'>
+                                            <expression type='MethodCallExpr'>
+                                                <name type='SimpleName' identifier='close'></name>
+                                                <scope type='NameExpr'>
+                                                    <name type='SimpleName' identifier='r'></name>
+                                                </scope>
+                                            </expression>
+                                        </statement>
+                                        <statement type='ReturnStmt'>
+                                            <expression type='NameExpr'>
+                                                <name type='SimpleName' identifier='result'></name>
+                                            </expression>
+                                        </statement>
+                                    </statements>
+                                </tryBlock>
+                                <catchClauses>
+                                    <catchClause type='CatchClause'>
+                                        <body type='BlockStmt'>
+                                            <statements>
+                                                <statement type='ExpressionStmt'>
+                                                    <expression type='MethodCallExpr'>
+                                                        <name type='SimpleName' identifier='printStackTrace'></name>
+                                                        <scope type='NameExpr'>
+                                                            <name type='SimpleName' identifier='exception'></name>
+                                                        </scope>
+                                                    </expression>
+                                                </statement>
+                                                <statement type='ReturnStmt'>
+                                                    <expression type='NullLiteralExpr'></expression>
+                                                </statement>
+                                            </statements>
+                                        </body>
+                                        <parameter type='Parameter' isVarArgs='false'>
+                                            <name type='SimpleName' identifier='exception'></name>
+                                            <type type='ClassOrInterfaceType'>
+                                                <name type='SimpleName' identifier='IOException'></name>
+                                            </type>
+                                        </parameter>
+                                    </catchClause>
+                                </catchClauses>
+                            </statement>
+                        </statements>
+                    </body>
+                    <type type='ArrayType'>
+                        <componentType type='ClassOrInterfaceType'>
+                            <name type='SimpleName' identifier='String'></name>
+                        </componentType>
+                    </type>
+                    <name type='SimpleName' identifier='tokenize'></name>
+                    <comment type='JavadocComment' content='
+     * Method to tokenize a string
+     *
+     * @param s string to tokenize
+     * @return an array of token on which all preprocessor registered have been applied
+     '></comment>
+                    <parameters>
+                        <parameter type='Parameter' isVarArgs='false'>
+                            <name type='SimpleName' identifier='s'></name>
+                            <type type='ClassOrInterfaceType'>
+                                <name type='SimpleName' identifier='String'></name>
+                            </type>
+                        </parameter>
+                    </parameters>
+                </member>
+                <member type='MethodDeclaration'>
+                    <type type='ClassOrInterfaceType'>
+                        <name type='SimpleName' identifier='String'></name>
+                    </type>
+                    <name type='SimpleName' identifier='getType'></name>
+                    <comment type='JavadocComment' content='
+     * Type of the Tokenizer
+     *
+     * @return
+     '></comment>
+                </member>
+            </members>
+        </type>
+    </types>
+</root>
