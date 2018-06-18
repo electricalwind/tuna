@@ -1,9 +1,9 @@
-package defectDataset.callable;
+package dataset.callable;
 
-import defectDataset.model.Bug;
-import defectDataset.model.FileInterest;
-import defectDataset.model.Fix;
-import gitUtilitaries.GitActions;
+import dataset.model.Bug;
+import dataset.model.FileInterest;
+import dataset.model.Fix;
+import gitutils.gitUtilitaries.GitActions;
 
 import java.io.IOException;
 import java.util.LinkedList;

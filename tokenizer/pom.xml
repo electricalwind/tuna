@@ -9,7 +9,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>tokenizer</artifactId>
+    <artifactId>tuna-tokenizer</artifactId>
     <version>1.0</version>
 
     <dependencies>

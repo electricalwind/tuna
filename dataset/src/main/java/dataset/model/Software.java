@@ -1,4 +1,4 @@
-package defectDataset.model;
+package dataset.model;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -13,6 +13,7 @@ import java.util.Map;
  *  and A list of all versions of the software and their corresponding commit
  */
 public class Software implements Serializable {
+    private static final long serialVersionUID = 20180618L;
     private final String name;
     private final String abreviation;
     private final String gitUrl;

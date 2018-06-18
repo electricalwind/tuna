@@ -1,13 +1,13 @@
-package defectDataset;
+package dataset;
 
 
-import defectDataset.callable.CommitAnalysis;
-import defectDataset.callable.FixFinder;
-import defectDataset.callable.OnlineAnalysis;
-import defectDataset.model.Bug;
-import defectDataset.model.Software;
-import defectDataset.setup.Softwares;
-import gitUtilitaries.GitActions;
+import dataset.callable.CommitAnalysis;
+import dataset.callable.FixFinder;
+import dataset.callable.OnlineAnalysis;
+import dataset.model.Bug;
+import dataset.model.Software;
+import dataset.setup.Softwares;
+import gitutils.gitUtilitaries.GitActions;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.revwalk.RevCommit;

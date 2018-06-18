@@ -1,8 +1,8 @@
-package defectDataset.callable;
+package dataset.callable;
 
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import defectDataset.model.Bug;
+import dataset.model.Bug;
 
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;

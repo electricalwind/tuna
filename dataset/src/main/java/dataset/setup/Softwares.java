@@ -1,6 +1,6 @@
-package defectDataset.setup;
+package dataset.setup;
 
-import defectDataset.model.Software;
+import dataset.model.Software;
 
 import java.util.ArrayList;
 import java.util.HashMap;

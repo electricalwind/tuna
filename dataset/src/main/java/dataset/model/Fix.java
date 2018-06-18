@@ -1,4 +1,4 @@
-package defectDataset.model;
+package dataset.model;
 
 import java.io.Serializable;
 
@@ -8,6 +8,7 @@ import java.io.Serializable;
  * it contains the information on the file before and after the fix as well as the commit corresponding to the old version of the file(lat time it was modified before)
  */
 public class Fix implements Serializable{
+    private static final long serialVersionUID = 20180618L;
     private final FileInterest fileBefore;
     private final FileInterest fileAfter;
     private final String oldHash;

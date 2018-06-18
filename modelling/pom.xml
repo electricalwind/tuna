@@ -10,7 +10,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>modelling</artifactId>
+    <artifactId>tuna-modelling</artifactId>
     <version>1.0</version>
 
     

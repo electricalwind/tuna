@@ -1,7 +1,7 @@
 package parameters;
 
-import defectDataset.model.Software;
-import defectDataset.setup.Softwares;
+import dataset.model.Software;
+import dataset.setup.Softwares;
 import gitUtilitaries.GitActions;
 import modelling.util.assertion.Assert;
 import modelling.util.assertion.FailureException;

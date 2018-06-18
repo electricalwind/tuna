@@ -1,4 +1,4 @@
-package defectDataset.model;
+package dataset.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.List;
  *  and A list od affected Version
  */
 public class Bug implements Serializable{
+    private static final long serialVersionUID = 20180618L;
     private final String identifier;
     private final String message;
     private final long timestamp;

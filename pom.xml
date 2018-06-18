@@ -52,6 +52,7 @@
         <module>tokenizer</module>
         <module>modelling</module>
         <module>experiment</module>
+        <module>dataset</module>
     </modules>
 
 
@@ -70,6 +71,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>lu.jimenez.research</groupId>
+            <artifactId>tuna-gitUtils</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
     <build>

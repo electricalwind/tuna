@@ -1,11 +1,10 @@
-package defectDataset;
+package dataset;
 
 
-import defectDataset.model.Bug;
-import defectDataset.model.Fix;
-import defectDataset.model.Software;
-import defectDataset.setup.Softwares;
-import gitUtilitaries.GitActions;
+import dataset.model.Bug;
+import dataset.model.Fix;
+import dataset.model.Software;
+import gitutils.gitUtilitaries.GitActions;
 import modelling.util.Pair;
 
 import java.io.IOException;
@@ -156,7 +155,7 @@ public class Utils {
      * main for testing purposes
      * @param args
      */
-    public static void main(String[] args) throws IOException {
+    /**public static void main(String[] args) throws IOException {
         for (Software software : Softwares.getAll()) {
             List<Pair<String, Integer>> versions = getOrderedVersionOfAsoftware(software, "/Users/matthieu/Documents/programmation/exp/" + software.getAbreviation() + "/");
 
@@ -165,6 +164,6 @@ public class Utils {
                 System.out.println(version.getFirst() + " : " + version.getSecond());
             }
         }
-    }
+    }*/
 
 }

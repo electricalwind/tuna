@@ -1,6 +1,6 @@
-package defectDataset.callable;
+package dataset.callable;
 
-import defectDataset.model.Bug;
+import dataset.model.Bug;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import java.util.ArrayList;
