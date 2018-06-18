@@ -92,12 +92,27 @@ public class NgramModelKylmImpl implements NgramModel {
 }
 ````
 
+To construct a NgramModelKylmImpl object, two constructors are available, one require a size (n) and a smoother, the other requiring in addition a threshold. Note that in the case of the first constructor, the threshold is put to 1.
+Regarding the smoother, kylm provides different smoothing techniques:
 
+* absolute discounting
+* good turing
+* kneser ney
+* maximum likelihood
+* modified kneser ney
+* witten Bell
+
+All of this smoother can be access through the Factory KylmSmootherFactory to be used straight in the constructor.
 
 
 ## How to use the tool
 
-To obtain a tokenizer different factory are provided:
+````java
+NgramModel model = new NgramModelKylmImpl(
+                2, KylmSmootherFactory.maximumLikelihood());
+model.train(myCorpus);
+model.crossEntropy(aDocument);
+````
 
 ## Third Party tool
 
