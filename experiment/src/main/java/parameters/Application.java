@@ -1,11 +1,16 @@
 package parameters;
 
+
+import com.github.javaparser.ParseProblemException;
+import com.opencsv.CSVWriter;
 import dataset.model.Software;
 import dataset.setup.Softwares;
-import gitUtilitaries.GitActions;
+import gitutils.FilesOfInterest;
+import gitutils.gitUtilitaries.GitActions;
 import modelling.util.assertion.Assert;
 import modelling.util.assertion.FailureException;
-import org.eclipse.jgit.api.errors.GitAPIException;
+import parameters.result.ResultToCSV;
+import parameters.result.VocabularyGrowthResult;
 import tokenizer.file.AbstractFileTokenizer;
 import tokenizer.file.java.exception.UnparsableException;
 
@@ -50,8 +55,10 @@ public class Application {
     }
 
     public static void main(String[] args) throws IOException {
-
-        Application app = new Application();
+        if(args.length!=1){
+            throw new RuntimeException("wrong number of Arguments");
+        }
+        Application app = new Application(args[0]);
         app.run();
     }
 
@@ -150,16 +157,6 @@ public class Application {
             return FilesOfInterest.list(directory, "java");
         } catch (IOException ex) {
             throw new FailureException(ex);
-        }
-    }
-
-    private void updateLocalRepository(String path, String gitURL) {
-        GithubImporter importer = new GithubImporter(gitURL, path);
-        try {
-            importer.updateRepo();
-        } catch (IOException | GitAPIException ex) {
-            ex.printStackTrace();
-            // It's ok, just ignore
         }
     }
 

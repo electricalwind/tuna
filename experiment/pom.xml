@@ -10,6 +10,11 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>lu.jimenez.research</groupId>
+            <artifactId>tuna-dataset</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.mashape.unirest</groupId>
             <artifactId>unirest-java</artifactId>
             <version>1.4.9</version>
@@ -35,6 +40,18 @@
             <groupId>lu.jimenez.research</groupId>
             <artifactId>gitUtils</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.6.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

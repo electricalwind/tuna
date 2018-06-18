@@ -157,6 +157,7 @@ public class BugDatasetGenerator {
             try {
                 List<Bug> bugs = bugDatasetGenerator.retrieveBugs();
                 System.out.println("For " + software.getName() + ": " + bugs.size() + " found");
+                BugDatasetGenerator.saveBugs(bugs,"/Users/matthieu/Documents/programmation/exp/"+software.getAbreviation()+"/bugs.obj");
             } catch (GitAPIException | IOException e) {
                 e.printStackTrace();
             }
