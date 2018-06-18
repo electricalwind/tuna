@@ -91,14 +91,56 @@ public class Software implements Serializable {
 
 ## How to use the tools
 
-To build a dataset, simply chose a project and
+To build a dataset, simply chose a project from the Softwares factory or all of them,
+Then create a BugDatasetGenerator by giving it a software object and a location where the project is supposed to be cloned or pull if already done.
+Once the object created, the method retrieveBugs can be called, this method will return a list of bugs that can be saved using the method save bugs.
 ```java 
+
+ for (Software software : Softwares.getAll()) {
+            BugDatasetGenerator bugDatasetGenerator = new BugDatasetGenerator(software, "myPath"+software.getAbreviation()+"/");
+            try {
+                List<Bug> bugs = bugDatasetGenerator.retrieveBugs();
+                System.out.println("For " + software.getName() + ": " + bugs.size() + " found");
+                BugDatasetGenerator.saveBugs(bugs,"myPathToSave"+software.getAbreviation()+"-bugs.obj");
+            } catch (GitAPIException | IOException e) {
+                e.printStackTrace();
+            }
+
+        }
 
 ``` 
     
+Note that the tool provide, other utilities present in the utils class that allows to reorder the bug by version they affected, or around the buggy files.
 
 ## Statistics
 
+As of end of 2017, the dataset had the following:
 
+|Project 					  | Latest       | Files     | kLoC	 | Versions | Bugs |
+|:---------------------------:|:------------:|:---------:|:-----:|:--------:|:----:|
+|BCEL                         | 6.1          | 488       | 75  	 | 5        | 93   |
+|BeansUtils                   | 1.9.3        | 257       | 72  	 | 18       | 155  |
+|CLI                          | 1.4          | 50	     | 12 	 | 6        | 91   |
+|Collections                  | 4.1          | 525       | 118   | 12       | 186  |
+|Compress                     | 1.15         | 329       | 70  	 | 18       | 309  |
+|Configuration                | 2.2          | 457       | 125   | 15       | 325  |
+|CSV                          | 1.4          | 28        | 8.4 	 | 5        | 67   |
+|DBUtils                      | 1.7          | 92        | 15 	 | 8        | 23   |
+|EMail                        | 1.4          | 47        | 12    | 8        | 51   |
+|FileUpload                   | 1.3.3        | 54        | 10 	 | 10       | 67   |
+|IO                           | 2.5          | 227       | 55  	 | 14       | 213  |
+|JCS                          | 2.2.1        | 562       | 102   | 6        | 102  |
+|Jexl                         | 3.1          | 108       | 23  	 | 8        | 126  |
+|Lang                         | 3.6          | 318       | 141   | 20       | 567  |
+|Math                         | 3.6.1        | 970       | 218   | 16       | 830  |
+|Net                          | 3.6          | 270       | 59  	 | 20       | 246  |
+|Pool                         | 2.4.2        | 79        | 24  	 | 22       | 154  |
+|Rng                          | 1.0          | 124       | 14 	 | 1        | 3    |
+|Text                         | 1.1          | 104       | 25  	 | 2        | 38   |
+|VFS                          | 2.2          | 382       | 52    | 4        | 214  |
+|Total						  | - 			 | 5,471	 | 1,230 | 218	    | 3860 |
 
 ## Third Party
+
+JGIT (Eclipse)
+Unirest (MIT)
