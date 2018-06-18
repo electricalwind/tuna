@@ -4,6 +4,7 @@ import diff.DeltaHistory
 import diff.DiffComputing
 import org.eclipse.jgit.api.BlameCommand
 import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.api.ResetCommand
 import org.eclipse.jgit.blame.BlameResult
 import org.eclipse.jgit.diff.DiffEntry
 import org.eclipse.jgit.diff.DiffFormatter
@@ -372,6 +373,11 @@ class GitActions {
         val commit = revWalk.parseCommit(commitId)
         return commit.commitTime
     }
+
+    fun resetHardToCommit(hash: String) {
+        git.reset().setMode(ResetCommand.ResetType.HARD).setRef(hash).call()
+    }
+
 
     /**
      * Method to be called when work on git has been done
