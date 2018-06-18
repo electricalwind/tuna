@@ -9,7 +9,6 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>lu.jimenez.research</groupId>
     <artifactId>tokenizer</artifactId>
     <version>1.0</version>
 

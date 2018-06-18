@@ -42,8 +42,155 @@ Available at line and file level.
 Dependencies are handled through maven, all of them will be downloaded except for joern-antlr that need to be installed first and that can be found at [this link](https://github.com/electricalwind/joernANTLR)
 
 
-## How to use the package
+## Architecture
+
+All tokenizer inherit from the Abstract tokenizer interface, which give intel about the scope of the tokenizer and its type
+
+````java
+/**
+* AbstractTokenizer interface
+*/
+public interface AbstractTokenizer {
+                                                            
+    /**
+    * Scope of the tokenizer, lines or files
+    * @return the Scope
+    */
+    Scope getScope();
+    /**
+    * Type of the Tokenizer
+    * @return the type of tokenizer
+    */
+    String getType();
+}
+````
+
+Then depending whether its a File Level tokenizer or a Line Level one, it will either inherit from
+
+AbstractLineTokenizer
+
+```java
+package tokenizer.line;
+
+import tokenizer.AbstractTokenizer;
+import tokenizer.Scope;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+
+public abstract class AbstractLineTokenizer implements AbstractTokenizer {
+    /**
+     * Tokenize
+     */
+
+    /**
+     * Method to tokenize a reader
+     *
+     * @param reader to use
+     * @return an array of array(line) of token
+     * @throws IOException in case of  exception from the reader
+     */
+    public abstract Iterable<Iterable<String>> tokenize(Reader reader) throws IOException;
+
+    /**
+     * Method to tokenize a string
+     *
+     * @param s string to tokenize
+     * @return an array of array (line) token
+     */
+    public Iterable<Iterable<String>> tokenize(String s) throws IOException {
+            Reader r = new StringReader(s);
+            Iterable<Iterable<String>> result = tokenize(r);
+            r.close();
+            return result;
+
+    }
+
+    public Scope getScope() {
+        return Scope.LINE;
+    }
+
+}
+
+```
+
+or  AbstractFileTokenizer
+
+```java
+package tokenizer.file;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+
+import tokenizer.AbstractTokenizer;
+import tokenizer.Scope;
+import tokenizer.file.java.exception.UnparsableException;
 
 
+public abstract class AbstractFileTokenizer implements AbstractTokenizer {
 
+    /**
+     * Tokenize
+     */
+
+    /**
+     * Method to tokenize a reader
+     *
+     * @param reader to use
+     * @return an array of tokens on which all preprocessor registered have been applied
+     * @throws IOException         in case of reader exception
+     * @throws UnparsableException if the content of reader could not be parsed
+     */
+    public abstract Iterable<String> tokenize(Reader reader) throws IOException, UnparsableException;
+
+    /**
+     * Method to tokenize a string
+     *
+     * @param s string to tokenize
+     * @return an array of token on which all preprocessor registered have been applied
+     */
+    public Iterable<String> tokenize(String s) throws IOException, UnparsableException {
+            Reader r = new StringReader(s);
+            Iterable result = tokenize(r);
+            r.close();
+            return result;
+    }
+
+    public Scope getScope() {
+        return Scope.FILE;
+    }
+}
+
+```
+
+Both provide method to tokenize either from a String or a reader, but differ in their output, where the File Tokenizer return an Iterable<String>, the Line Tokenizer will return an Iterable<Iterable<String>>.
+
+
+## How to use the tool
+
+To obtain a tokenizer different factory are provided:
+
+### File Level
+
+CPPFileTokenizerFactory
+JavaFileTokenizerFactory
+
+### Line Level
+
+CPPLineTokenizerFactory
+JavaLineTokenizer
+
+then once the choice done just call
+
+````java
+JavaFileTokenizerFactory.lemmeTokenizer();
+````
+
+## Third Party tool
+
+* Java Parser (LGPL)
+* Joern (LGPL)
+* ANTLR4 (BSD)
 
