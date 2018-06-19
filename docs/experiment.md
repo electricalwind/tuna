@@ -8,6 +8,18 @@ There is no requirement in terms of software for this tool, as maven will take c
 
 ## Parameter study
 
+This study investigate the effect of the different parameters of a NGram Model (n, threshold,smoother, tokenizer) on the cross entropy returned by the model. 
+
+### Studied Parameter
+
+* n : 2, 3, 4, 5, 6, 7
+* threshold: 1, 2, 4, 8, 16
+* smoother : absoluteDiscounting, kneserNey, modified Kneser Ney, witten Bell
+* tokenizer : utfTokenizer, utfWocTokenizer, lemmeTokenizer, lemmeWocTokenizer, depthFirstTokenizer, breadthFirstTokenizer, depthFirstPrunedTokenizer, breadthFirstPrunedTokenizer
+
+### Projects
+
+All projects present in the 
 
 ## Defect study
 

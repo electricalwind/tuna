@@ -1,7 +1,6 @@
 package parameters;
 
 
-import com.github.javaparser.ParseProblemException;
 import dataset.model.Software;
 import dataset.setup.Softwares;
 import gitutils.FilesOfInterest;
@@ -133,8 +132,6 @@ public class Application {
             try {
                 Reader reader = new FileReader(new File(path));
                 result.add(tokenizer.tokenize(reader));
-            } catch (ParseProblemException ppe) {
-                // It's ok, just ignore
             } catch (IOException ex) {
                 Assert.shouldNeverGetHere();
             } catch (UnparsableException e) {
