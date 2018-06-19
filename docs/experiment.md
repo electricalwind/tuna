@@ -19,7 +19,11 @@ This study investigate the effect of the different parameters of a NGram Model (
 
 ### Projects
 
-All projects present in the 
+All projects in their latest version present in the defect dataset are used in this experiment.
+
+### Experimental Process
+
+
 
 ## Defect study
 

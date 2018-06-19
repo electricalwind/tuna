@@ -53,6 +53,7 @@
     <groupId>lu.jimenez.research</groupId>
     <artifactId>experiment</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
     
 </project>

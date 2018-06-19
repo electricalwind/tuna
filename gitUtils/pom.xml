@@ -11,6 +11,7 @@
 
     <artifactId>tuna-gitUtils</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <kotlin.version>1.2.30</kotlin.version>
