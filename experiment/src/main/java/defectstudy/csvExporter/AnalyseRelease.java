@@ -7,7 +7,6 @@ import defectstudy.model.ReleaseResult;
 import gitutils.FilesOfInterest;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,94 +90,6 @@ public class AnalyseRelease {
             }
             writerom.close();
         }
-
-    }
-
-
-    public static void releaseAnalysis2(String directory) throws IOException, ClassNotFoundException {
-        List<String> resultRelease = FilesOfInterest.list(directory, "obj");
-        Map<String, List<String[]>> result = new HashMap<>();
-        String[] tokenizers = new String[]{"UTF", "UTFw", "JP", "JPw", "DF", "BF", "PDF", "PBF"};
-        for (String resul : resultRelease) {
-            String[] p = resul.split("_");
-            List<String[]> table;
-            if (result.containsKey(p[0])) {
-                table = result.get(p[0]);
-            } else {
-                table = new ArrayList<>();
-                result.put(p[0], table);
-            }
-            Map<ReleaseFile, List<ReleaseResult>> release = loadrelease(resul);
-            double countBug = 0;
-            double countFile = 0;
-            List<String[]> intermediate = new ArrayList<>();
-            for (Map.Entry<ReleaseFile, List<ReleaseResult>> file : release.entrySet()) {
-                String buggy = file.getKey().getBugs() > 0 ? "Buggy" : "Not Buggy";
-                if (file.getKey().getBugs() > 0) countBug++;
-                countFile++;
-                for (int i = 0; i * 2 < file.getValue().size(); i++) {
-                    String entropy = file.getValue().get(i * 2).getEntropy();
-                    String tokenizer = tokenizers[i];
-                    intermediate.add(new String[]{buggy, entropy, tokenizer});
-                }
-            }
-            //if (countBug * 100 / countFile > 5) {
-            table.addAll(intermediate);
-            // }
-
-        }
-        for (Map.Entry<String, List<String[]>> resul : result.entrySet()) {
-            CSVWriter writerom = new CSVWriter(new FileWriter(new File(resul.getKey() + "relres.csv"), false));
-            writerom.writeNext(new String[]{"Buggy", "Entropy", "Tokenizer"});
-            writerom.writeAll(resul.getValue());
-            writerom.close();
-        }
-
-    }
-
-    public static void releaseAnalysis3(String directory) throws IOException, ClassNotFoundException {
-        List<String> resultRelease = FilesOfInterest.list(directory, "obj");
-        Map<String, List<String[]>> result = new HashMap<>();
-        String[] tokenizers = new String[]{"UTF", "UTF8", "DF", "DF8"};
-        for (String resul : resultRelease) {
-            String[] p = resul.split("_");
-            List<String[]> table;
-            if (result.containsKey(p[0])) {
-                table = result.get(p[0]);
-            } else {
-                table = new ArrayList<>();
-                result.put(p[0], table);
-            }
-            Map<ReleaseFile, List<ReleaseResult>> release = loadrelease(resul);
-            List<String[]> intermediate = new ArrayList<>();
-            for (Map.Entry<ReleaseFile, List<ReleaseResult>> file : release.entrySet()) {
-                String buggy = file.getKey().getBugs() > 0 ? "Buggy" : "Not Buggy";
-                String entropy = file.getValue().get(0).getEntropy();
-                String tokenizer = tokenizers[0];
-                intermediate.add(new String[]{buggy, entropy, tokenizer});
-                entropy = file.getValue().get(1).getEntropy();
-                tokenizer = tokenizers[1];
-                intermediate.add(new String[]{buggy, entropy, tokenizer});
-                if (file.getValue().size() > 8) {
-                    entropy = file.getValue().get(8).getEntropy();
-                    tokenizer = tokenizers[2];
-                    intermediate.add(new String[]{buggy, entropy, tokenizer});
-                    entropy = file.getValue().get(9).getEntropy();
-                    tokenizer = tokenizers[3];
-                    intermediate.add(new String[]{buggy, entropy, tokenizer});
-                }
-            }
-            table.addAll(intermediate);
-
-
-        }
-        for (Map.Entry<String, List<String[]>> resul : result.entrySet()) {
-            CSVWriter writerom = new CSVWriter(new FileWriter(new File(resul.getKey() + "relres.csv"), false));
-            writerom.writeNext(new String[]{"Buggy", "Entropy", "Tokenizer"});
-            writerom.writeAll(resul.getValue());
-            writerom.close();
-        }
-
     }
 
 }
