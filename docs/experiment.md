@@ -72,11 +72,60 @@ This study look into the effect of the choice of the tokenizer on naturalness st
 
 ### Projects
 
+All the projects from the [dataset](dataset.md) are used. 
+
+|Project                 | Latest         | Versions |
+|:---------------------------:|:------------:|:---------:|
+|BCEL                         | 6.1          | 5        | 
+|BeansUtils                   | 1.9.3        |  18       | 
+|CLI                          | 1.4          |  6        | 
+|Collections                  | 4.1          | 12       | 
+|Compress                     | 1.15         |  18       | 
+|Configuration                | 2.2          |  15       | 
+|CSV                          | 1.4          |  5        | 
+|DBUtils                      | 1.7          | 8        | 
+|EMail                        | 1.4          | 8        |
+|FileUpload                   | 1.3.3        | 10       | 
+|IO                           | 2.5          | 14       | 
+|JCS                          | 2.2.1        |  6        | 
+|Jexl                         | 3.1          | 8        | 
+|Lang                         | 3.6          | 20       | 
+|Math                         | 3.6.1        | 16       | 
+|Net                          | 3.6          | 20       | 
+|Pool                         | 2.4.2        | 22       | 
+|Rng                          | 1.0          | 1        | 
+|Text                         | 1.1          |  2        | 
+|VFS                          | 2.2          |  4        | 
+|Total                  | -         |  218     |
+
+For each project, the commit corresponding to all major releases are retrieve for a total of 218 versions.
+
 ### Experimental Process
 
-        
+For each project:
 
+1. generate or load the bug dataset
+2. associate all bugs to a corresponding version
+3. for each version V
+    * for each Tokenizer T
+        * parse all files of the version and if a file has bug or a fix for this version parse it
+        * compute the cross entropy of all the parsed files
+
+The cross entropy here use all the other files of the version to build a model and evaluate on the file.
+        
 ### Output
+
+The execution of this experiment result in the creation of two type of binary serialized file.
+
+The first type correspond to the result per version and will be generated as project + "_" + release + ".obj"
+This binary serialized file will contain a Map<ReleaseFile, List<ReleaseResult>.
+Where ReleaseFile correspond to a file of the version and contains the following information :file, number of bugs, number of fixes, loc.
+While the list of ReleaseResult correspond to the result of cross Entropy per tokenizer and contains the following information : tokenizer, entropy.
+
+The second type correspond to the result per bug and tokenizer from the dataset and will be generated as project + "bugs.obj"
+This binary serialized file will contain a Map<BugTokenFile, List<BugResult>.
+Where BugTokenFile correspond to a file of the version and contains the following information : file,budID,tokenizerAbv
+While the list of BugResult correspond to the result of cross Entropy in the previous release, before and after the fix and at the nex release and contains the following information : berelease, buggy, fixed, afrelease, releaseAffected.
 
 ### Launching 
 
@@ -87,4 +136,4 @@ import parameters.Application;
 Application app = new Application("path To Save");
 app.run();
 ````
-
+Then it is possible to export the serialized binary into csv files using the AnalyseBugs and Analyse Release class in the csvExporter subpackage.
