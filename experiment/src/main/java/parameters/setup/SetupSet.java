@@ -1,4 +1,4 @@
-package parameters;
+package parameters.setup;
 
 import modelling.infrastructure.KylmSmootherFactory;
 import modelling.infrastructure.kylm.ngram.smoother.NgramSmoother;
@@ -40,11 +40,8 @@ public class SetupSet {
 
     private static List<NgramSmoother> smoothers() {
         List<NgramSmoother> result = new LinkedList<>();
-
         result.add(KylmSmootherFactory.absoluteDiscounting());
-        //result.add(KylmSmootherFactory.goodTuring());
         result.add(KylmSmootherFactory.kneserNey());
-        //result.add(KylmSmootherFactory.maximumLikelihood());
         result.add(KylmSmootherFactory.modifiedKneserNey());
         result.add(KylmSmootherFactory.wittenBell());
 

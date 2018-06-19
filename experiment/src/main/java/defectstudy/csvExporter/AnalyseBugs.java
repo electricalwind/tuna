@@ -1,4 +1,4 @@
-package defectstudy.analyse;
+package defectstudy.csvExporter;
 
 
 import com.opencsv.CSVWriter;
@@ -11,10 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class bugsToCSV {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        bugtoCSV3("/Users/matthieu/Documents/paper/result/Saner/sanerRQ22");
-    }
+public class AnalyseBugs {
 
     private static void bugtoCSV(String s) throws IOException, ClassNotFoundException {
         List<String> resultBugs = FilesOfInterest.list(s, "obj");

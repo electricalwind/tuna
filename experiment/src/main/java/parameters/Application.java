@@ -2,19 +2,22 @@ package parameters;
 
 
 import com.github.javaparser.ParseProblemException;
-import com.opencsv.CSVWriter;
 import dataset.model.Software;
 import dataset.setup.Softwares;
 import gitutils.FilesOfInterest;
 import gitutils.gitUtilitaries.GitActions;
 import modelling.util.assertion.Assert;
 import modelling.util.assertion.FailureException;
-import parameters.result.ResultToCSV;
-import parameters.result.VocabularyGrowthResult;
+import parameters.csvExporter.ResultToCSV;
+import parameters.setup.ExperimentSet;
+import parameters.setup.Setup;
 import tokenizer.file.AbstractFileTokenizer;
 import tokenizer.file.java.exception.UnparsableException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,17 +76,12 @@ public class Application {
             Map<String, List<Iterable<String>>> tokenizeContent = new LinkedHashMap<>();
 
             //For Each Project Parsing
-            File v = new File(directory + tokenizer.getKey() + "_vocab" + ".csv");
-            CSVWriter writerv = new CSVWriter(new FileWriter(v, false), ';');
             for (Map.Entry<String, List<String>> projectPaths : projectsPaths.entrySet()) {
                 List<Iterable<String>> parsedContent = parse(projectPaths.getValue(), tokenizer.getValue());
                 tokenizeContent.put(projectPaths.getKey(), parsedContent);
-                VocabularyGrowthResult growthResult = VocabularyGrowth.run(parsedContent);
-                growthResult.addToCSV(writerv, projectPaths.getKey());
             }
             System.out.println("done with " + tokenizer.getKey() + " vocabulary");
 
-            writerv.close();
 
             //Then run Single and Cross Project Precision
             for (Map.Entry<String, List<Iterable<String>>> project : tokenizeContent.entrySet()) {
@@ -143,22 +141,17 @@ public class Application {
                 e.printStackTrace();
             }
         }
-
         return result;
     }
 
     private List<String> loadPaths(String project) {
-        return loadPaths(directory + project, projects.get(project));
-    }
-
-    private List<String> loadPaths(String directory, String gitURL) {
-        GitActions git = new GitActions(gitURL,directory);
+        new GitActions(projects.get(project),directory + project);
         try {
             return FilesOfInterest.list(directory, "java");
         } catch (IOException ex) {
             throw new FailureException(ex);
         }
-    }
 
+    }
 
 }

@@ -1,10 +1,10 @@
-package parameters;
+package parameters.setup;
 
 import modelling.infrastructure.KylmSmootherFactory;
 import modelling.infrastructure.kylm.ngram.smoother.NgramSmoother;
 import modelling.util.assertion.Assert;
 
-import static warzone.experiment.util.Separators.COLUMN_SEPARATOR;
+import static parameters.util.Separators.COLUMN_SEPARATOR;
 
 @SuppressWarnings("Duplicates")
 public class Setup {

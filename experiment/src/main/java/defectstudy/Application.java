@@ -78,6 +78,7 @@ public class Application {
 
     public void run() throws GitAPIException, IOException, TrainingFailedException, ClassNotFoundException, UnparsableException {
         List<Pair<Software, List<Bug>>> listbugs = new ArrayList<>();
+
         for (Software software : SOFTWARES) {
             String pathGit = DIRECTORY + software.getAbreviation() + "/";
             File bugf = new File(pathGit + "bugs.obj");
@@ -90,9 +91,12 @@ public class Application {
             }
             listbugs.add(new Pair<>(software, bugs));
         }
+
         for (Pair<Software, List<Bug>> pair : listbugs) {
+
             Software software = pair.getFirst();
             List<Bug> bugs = pair.getSecond();
+
             String pathGit = DIRECTORY + software.getAbreviation() + "/";
             System.out.println("Starting soft: " + software.getAbreviation());
 
@@ -132,7 +136,6 @@ public class Application {
                         evaluation(bugsMap, version, locPerFile, thisVersionsBugs, thisVersionPatched, buglessToConsider, fixlessToConsider, resultForRelease, tokenizer, tokenizedContent, trainingSet, 1);
                         evaluation(bugsMap, version, locPerFile, thisVersionsBugs, thisVersionPatched, buglessToConsider, fixlessToConsider, resultForRelease, tokenizer, tokenizedContent, trainingSet, 8);
                     }
-
                 }
                 saverelease(resultForRelease, pathGit, software.getAbreviation(), version.getFirst());
                 System.out.println("Finished version: " + version.getFirst());
@@ -242,6 +245,7 @@ public class Application {
             resultForRelease.put(releaseFile, releaseResults);
         }
     }
+
 
     private Map<String, List<Bug>> fixedBugVersion(List<Bug> bugs, List<Pair<String, Integer>> versions, GitActions gitUtilitary) throws IOException {
         Map<String, List<Bug>> fixmap = new HashMap<>();

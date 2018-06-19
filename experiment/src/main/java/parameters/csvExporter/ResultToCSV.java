@@ -1,20 +1,48 @@
-package parameters.analysis;
+package parameters.csvExporter;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import gitutils.FilesOfInterest;
+import parameters.setup.Setup;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class CsvAnalysis {
+public class ResultToCSV {
 
+    /**
+     * Write a result of a project
+     * @param result
+     * @param fileName
+     * @param directory
+     * @throws IOException
+     */
+    public static void write(Map<Setup, Double> result, String fileName, String directory) throws IOException {
+
+        List<String[]> toWrite = new LinkedList<>();
+        String[] header = new String[]{"Smoother", "N-Gram Size", "Threshold", "Cross-entropy"};
+        toWrite.add(header);
+
+        for (Map.Entry<Setup, Double> entry : result.entrySet()) {
+            Setup setup = entry.getKey();
+            String[] line = new String[]{setup.smoother().getName(), String.valueOf(setup.ngramSize()), String.valueOf(setup.threshold()), String.valueOf(entry.getValue())};
+            toWrite.add(line);
+        }
+        File v = new File(directory + fileName + ".csv");
+        CSVWriter writerv = new CSVWriter(new FileWriter(v, false), ';');
+        writerv.writeAll(toWrite);
+        writerv.close();
+    }
+
+    /**
+     * merge all result
+     * @param pathFrom
+     * @param pathTo
+     * @throws IOException
+     */
     public static void produceGenericCSV(String pathFrom, String pathTo) throws IOException {
         List<String> csvs = FilesOfInterest.list(pathFrom, "csv");
 
@@ -63,7 +91,4 @@ public class CsvAnalysis {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        produceGenericCSV("/Users/matthieu/Documents/sanerrq1/","/Users/matthieu/Documents/sanerrq1/result/");
-    }
 }

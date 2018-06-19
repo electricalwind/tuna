@@ -1,4 +1,4 @@
-package defectstudy.analyse;
+package defectstudy.csvExporter;
 
 
 import com.opencsv.CSVWriter;
@@ -23,8 +23,6 @@ public class AnalyseRelease {
             CSVWriter writerom = new CSVWriter(new FileWriter(new File(prorel), false));
             writerom.writeNext(new String[]{"File", "coutnBug", "countFix", "loc", "U1", "U8", "UW1", "UW8", "JL1", "JL8", "JLW1", "JLW8", "DF1", "DF8", "BF1", "BF8", "PDF1", "PDF8", "PBF1", "PBF8"});
             for (Map.Entry<ReleaseFile, List<ReleaseResult>> file : release.entrySet()) {
-                //if (!file.getKey().getFile().contains("test")) {
-                //if (!file.getKey().getFile().contains("example")) {
                 String[] fileres = new String[20];
                 fileres[0] = file.getKey().getFile();
                 fileres[1] = String.valueOf(file.getKey().getBugs());
@@ -37,69 +35,12 @@ public class AnalyseRelease {
                         fileres[i + 4] = "Infinity";
                 }
                 writerom.writeNext(fileres);
-                //}
-                //}
-                /**if(file.getKey().getBugs()>0 && file.getKey().getFixed()>0){
-                 fileres[1]= String.valueOf(file.getKey().getBugs());
-                 fileres[2] ="0";
-                 writerom.writeNext(fileres);
-                 fileres[1]="0";
-                 fileres[2] = String.valueOf(file.getKey().getFixed());
-                 writerom.writeNext(fileres);
-                 }else{
-                 fileres[1] = String.valueOf(file.getKey().getBugs());
-                 fileres[2] = String.valueOf(file.getKey().getFixed());
-                 writerom.writeNext(fileres);
-                 }*/
-
             }
             writerom.close();
         }
 
     }
 
-
-    public static void release2ToCsv(String directory) throws IOException, ClassNotFoundException {
-        List<String> resultRelease = FilesOfInterest.list(directory, "obj");
-        for (String resul : resultRelease) {
-            Map<ReleaseFile, List<ReleaseResult>> release = loadrelease(resul);
-            String prorel = resul.replace(".obj", ".csv");
-            CSVWriter writerom = new CSVWriter(new FileWriter(new File(prorel), false));
-            writerom.writeNext(new String[]{"File", "coutnBug", "countFix", "UTF", "UTFw", "JP", "JPw", "DF", "BF", "PDF", "PBF"});
-            for (Map.Entry<ReleaseFile, List<ReleaseResult>> file : release.entrySet()) {
-                //if (!file.getKey().getFile().contains("test")) {
-                //if (!file.getKey().getFile().contains("example")) {
-                String[] fileres = new String[11];
-                fileres[0] = file.getKey().getFile();
-                fileres[1] = String.valueOf(file.getKey().getBugs());
-                fileres[2] = String.valueOf(file.getKey().getFixed());
-                for (int i = 0; i < 8; i++) {
-                    if (i * 2 < file.getValue().size())
-                        fileres[i + 3] = file.getValue().get(i * 2).getEntropy();
-                    else
-                        fileres[i + 3] = "Infinity";
-                }
-                writerom.writeNext(fileres);
-                //}
-                //}
-                /**if(file.getKey().getBugs()>0 && file.getKey().getFixed()>0){
-                 fileres[1]= String.valueOf(file.getKey().getBugs());
-                 fileres[2] ="0";
-                 writerom.writeNext(fileres);
-                 fileres[1]="0";
-                 fileres[2] = String.valueOf(file.getKey().getFixed());
-                 writerom.writeNext(fileres);
-                 }else{
-                 fileres[1] = String.valueOf(file.getKey().getBugs());
-                 fileres[2] = String.valueOf(file.getKey().getFixed());
-                 writerom.writeNext(fileres);
-                 }*/
-
-            }
-            writerom.close();
-        }
-
-    }
 
 
     public static Map<ReleaseFile, List<ReleaseResult>> loadrelease(String folder) throws IOException, ClassNotFoundException {
@@ -109,9 +50,6 @@ public class AnalyseRelease {
         return releaseR;
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        releaseAnalysis3("/Users/matthieu/Documents/sanerRQ2/");
-    }
 
 
     public static void releaseAnalysis(String directory) throws IOException, ClassNotFoundException {

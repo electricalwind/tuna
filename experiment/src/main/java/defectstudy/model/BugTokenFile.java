@@ -6,6 +6,7 @@ import java.io.Serializable;
  *
  */
 public class BugTokenFile implements Serializable {
+    private static final long serialVersionUID = 20180618L;
     private String file;
     private String budID;
     private String tokenizerAbv;

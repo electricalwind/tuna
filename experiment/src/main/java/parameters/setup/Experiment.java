@@ -1,4 +1,4 @@
-package parameters;
+package parameters.setup;
 
 import modelling.NgramModel;
 import modelling.exception.TrainingFailedException;
@@ -9,7 +9,6 @@ import java.util.concurrent.Callable;
 
 public class Experiment implements Callable<Pair<Setup,Double>>{
     private final Setup setup;
-    private static final int FOLD_NUMBER = 10;
     private final Iterable<Iterable<String>> trainingSet;
     private final Iterable<Iterable<String>> testingSet;
 

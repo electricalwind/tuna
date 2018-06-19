@@ -6,7 +6,6 @@ import dataset.callable.FixFinder;
 import dataset.callable.OnlineAnalysis;
 import dataset.model.Bug;
 import dataset.model.Software;
-import dataset.setup.Softwares;
 import gitutils.gitUtilitaries.GitActions;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -62,7 +61,7 @@ public class BugDatasetGenerator {
     }
 
     /**
-     * Second analyse wheter the issue is a bug from the tracker and get the affected version
+     * Second csvExporter wheter the issue is a bug from the tracker and get the affected version
      * @param bugslikely
      * @return
      */
@@ -145,24 +144,6 @@ public class BugDatasetGenerator {
             }
         }
         return commitBug;
-    }
-
-    /**
-     * Main for testing purposes
-     * @param args
-     */
-    public static void main(String[] args) {
-        for (Software software : Softwares.getAll()) {
-            BugDatasetGenerator bugDatasetGenerator = new BugDatasetGenerator(software, "/Users/matthieu/Documents/programmation/exp/"+software.getAbreviation()+"/");
-            try {
-                List<Bug> bugs = bugDatasetGenerator.retrieveBugs();
-                System.out.println("For " + software.getName() + ": " + bugs.size() + " found");
-                BugDatasetGenerator.saveBugs(bugs,"/Users/matthieu/Documents/programmation/exp/"+software.getAbreviation()+"/bugs.obj");
-            } catch (GitAPIException | IOException e) {
-                e.printStackTrace();
-            }
-
-        }
     }
 
     /**

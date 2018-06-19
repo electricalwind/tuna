@@ -1,4 +1,4 @@
-package parameters;
+package parameters.setup;
 
 import modelling.exception.TrainingFailedException;
 import modelling.util.Pair;

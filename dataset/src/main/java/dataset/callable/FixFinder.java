@@ -21,7 +21,7 @@ public class FixFinder implements Callable<Bug> {
 
     /**
      * Constructor
-     * @param bug to analyse
+     * @param bug to csvExporter
      * @param gitUtilitary git utilitary class directly linked to the .git
      */
     public FixFinder(Bug bug, GitActions gitUtilitary) {
@@ -32,7 +32,7 @@ public class FixFinder implements Callable<Bug> {
 
     /**
      * Constructor
-     * @param bug to analyse
+     * @param bug to csvExporter
      * @param gitUtilitary git utilitary class directly linked to the .git
      * @param pattern pattern of file,i.e., extension
      */

@@ -6,6 +6,7 @@ import java.io.Serializable;
  *
  */
 public class ReleaseResult implements Serializable {
+    private static final long serialVersionUID = 20180618L;
     private String tokenizer;
     private String entropy;
 

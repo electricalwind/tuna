@@ -6,6 +6,7 @@ import java.io.Serializable;
  *
  */
 public class ReleaseFile implements Serializable {
+    private static final long serialVersionUID = 20180618L;
     private final String file;
     private final int bugs;
     private final int fixed;

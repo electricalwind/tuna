@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A class implementing callable that analyse the commit message to find mention to the bug issue
+ * A class implementing callable that csvExporter the commit message to find mention to the bug issue
  */
 public class CommitAnalysis implements Callable<Bug> {
     private final Pattern regexp;
@@ -17,7 +17,7 @@ public class CommitAnalysis implements Callable<Bug> {
 
     /**
      * Constructor
-     * @param next commit to analyse
+     * @param next commit to csvExporter
      * @param abreviation software abreviation on the bug tracker
      */
     public CommitAnalysis(RevCommit next, String abreviation) {

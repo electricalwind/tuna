@@ -6,6 +6,7 @@ import java.io.Serializable;
  *
  */
 public class BugResult implements Serializable{
+    private static final long serialVersionUID = 20180618L;
     private String berelease;
     private String buggy;
     private String fixed;
