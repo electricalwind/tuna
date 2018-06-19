@@ -1,10 +1,10 @@
 # The Language Modelling package
 
-The Language Modelling package offer a functional way to parameterize n-gram models, train them based on tokenized text, and compute the cross-entropy of one or more files
+The Language Modelling package offer a functional way to parameterize n-gram models, train them based on tokenized text, and compute the cross-entropy of one or more files.
 
 ## What is it?
 
-The Language Modelling package provide an interface to train and build Ngram model and compute the cross entropy of some text according to them. It currently offers an implementation of this interface based on [KYLM](https://github.com/neubig/kylm). Hence it offers all parameters integrated in kylm, e.g., n, smoothing techniques, unknown threshold...
+The Language Modelling package provides an interface to train and build Ngram models and compute the cross entropy of some text, according to them. It currently offers an implementation of this interface based on [KYLM](https://github.com/neubig/kylm). Hence it offers all parameters integrated in kylm, e.g., n, smoothing techniques, unknown threshold...
 
 
 ## Requirements
@@ -13,7 +13,7 @@ No dependencies are required to use this package.
 
 ## Architecture
 
-The package can be splitted in two, first is the interface NGramModel which contains everything required to build and use a NgramModel, then the implementation of this interface which in our current situation is based on Kylm, but following the interface segregation principle, alternative implementations can easily be added in the future.
+The package can be split in two, first is the interface NGramModel which contains everything required to build and use a NgramModel, then the implementation of this interface which in our current situation is based on Kylm, but following the interface segregation principle, alternative implementations can easily be added in the future.
 
 
 ### Interface
@@ -100,9 +100,9 @@ Regarding the smoother, kylm provides different smoothing techniques:
 * kneser ney
 * maximum likelihood
 * modified kneser ney
-* witten Bell
+* Witten Bell
 
-All of this smoother can be access through the Factory KylmSmootherFactory to be used straight in the constructor.
+All of this smoother can be accessed through the Factory KylmSmootherFactory to be used straight in the constructor.
 
 
 ## How to use the tool
