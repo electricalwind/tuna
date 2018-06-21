@@ -1,7 +1,7 @@
 # Git Utilitaries
 
-This library coded in Kotlin provide some useful function when trying to mine a git repository.
-First, it allos to clone or pull a remote repository, then it offers the following methods:
+This library coded in Kotlin provides some useful function when trying to mine a git repository.
+First, it allows to clone or pull a remote repository, then it offers the following methods:
 
 * retrievingFileFromSpecificCommit
 * listOfCommitImpactingAFile
