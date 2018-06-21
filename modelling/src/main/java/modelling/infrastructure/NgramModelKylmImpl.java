@@ -19,10 +19,25 @@ public class NgramModelKylmImpl implements NgramModel {
     private final NgramLM model;
     private boolean trained;
 
+    
     /**
-     * @requires size > 1 && smoother not null
+     * @requires size > 1
      * @effects Make this be a new NgramModel with this.size = size and
-     * trained = false.
+     * trained = false, using modified Kneser-Ney as smoother and one as 
+     * threshold
+     */
+    public NgramModelKylmImpl(int size) {
+        Assert.isTrue(size > 1);
+        
+        this.size = size;
+        trained = false;
+        this.model = new NgramLM(size, KylmSmootherFactory.modifiedKneserNey());
+    }
+    
+    /**
+     * @requires size > 1
+     * @effects Make this be a new NgramModel with this.size = size and
+     * trained = false, using the specified smoother and one as threshold.
      */
     public NgramModelKylmImpl(int size, NgramSmoother smoother) {
         Assert.isTrue(size > 1);
@@ -32,19 +47,12 @@ public class NgramModelKylmImpl implements NgramModel {
         trained = false;
 
         this.model = new NgramLM(size, smoother);
-
-        /**if (added) {
-         //smoother.setCutoffs(new int[3]);
-         //smoother.setSmoothUnigrams(true);
-         model.setVocabFrequency(10);
-
-         }*/
     }
 
     /**
      * @requires size > 1 && smoother not null
      * @effects Make this be a new NgramModel with this.size = size and
-     * trained = false.
+     * trained = false, using the specified smoother and threshold.
      */
     public NgramModelKylmImpl(int size, NgramSmoother smoother, int threshold) {
         Assert.isTrue(size > 1);
