@@ -50,6 +50,7 @@
 
     <modules>
         <module>gitUtils</module>
+        <module>joern</module>
         <module>tokenizer</module>
         <module>modelling</module>
         <module>experiment</module>

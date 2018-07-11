@@ -1,7 +1,7 @@
 package gitutils.gitUtilitaries
 
-import diff.DeltaHistory
-import diff.DiffComputing
+import gitutils.diff.DeltaHistory
+import gitutils.diff.DiffComputing
 import org.eclipse.jgit.api.BlameCommand
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.ResetCommand

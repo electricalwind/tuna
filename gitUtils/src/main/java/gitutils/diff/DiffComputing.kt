@@ -1,4 +1,4 @@
-package diff
+package gitutils.diff
 
 import difflib.Delta
 import difflib.DiffUtils
